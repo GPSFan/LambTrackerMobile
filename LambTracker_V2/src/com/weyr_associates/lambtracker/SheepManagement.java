@@ -399,6 +399,11 @@ public class SheepManagement extends ListActivity {
     	InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
     	imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
    	
+      	// make the alert button normal and disabled
+	   	btn = (Button) findViewById( R.id.alert_btn );
+	   	btn.getBackground().setColorFilter(new LightingColorFilter(0xFF000000, 0xFF000000));
+	   	btn.setEnabled(false); 
+   	
         TV = (TextView) findViewById( R.id.inputText );	        
     	String	tag_num = TV.getText().toString();
    	
@@ -919,7 +924,7 @@ public class SheepManagement extends ListActivity {
 			//  user clicked 'Scan' button    
 			 public void scanEid( View v){
 			 	// Here is where I need to get a tag scanned and put the data into the variable LastEID
-//				 clearBtn( v );
+				 clearBtn( v );
 				 tag_type_spinner = (Spinner) findViewById(R.id.tag_type_spinner);
 				 tag_type_spinner.setSelection(2);
 //				 Log.i("in ScanEID", " after set tag_type_spinner ");
