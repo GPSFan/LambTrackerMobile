@@ -71,6 +71,7 @@ public class SheepManagement extends ListActivity {
 	public int	drug_type, which_wormer, which_vaccine;
 	public RadioGroup radioGroup;
 	public CheckBox 	boxtrimtoes, boxwormer, boxvaccine, boxweight, boxscrapieblood;
+	public CheckBox 	boxraffle;
 	public String note_text;
 	public int predefined_note01, predefined_note02, predefined_note03, predefined_note04, predefined_note05;
 	private int             nRecs;
@@ -635,9 +636,18 @@ public class SheepManagement extends ListActivity {
 				Log.i("update alerts ", "before cmd " + cmd);
 				dbh.exec( cmd );
 				Log.i("update alerts ", "after cmd " + cmd);
-			}			
+			}	
+			//	Code to handle the 2014 Woolgrowers Raffle from Shearwell			
+			boxraffle = (CheckBox) findViewById(R.id.checkBoxEnterRaffle);
+			if (boxraffle.isChecked()){				
+				cmd = String.format("update sheep_table set alert01 = 'You have already entered the raffle.'" +
+						" where sheep_id =%d ", thissheep_id ) ;
+				Log.i("update alerts ", "before cmd " + cmd);
+				dbh.exec( cmd );
+				Log.i("update alerts ", "after cmd " + cmd);
+			}
 			
-			
+		
 			//	Need to figure out the id_drugid for what we are giving this sheep
 			boxwormer = (CheckBox) findViewById(R.id.checkBoxGiveWormer);
 			if (boxwormer.isChecked()){
@@ -822,10 +832,16 @@ public class SheepManagement extends ListActivity {
 //		Log.i("clear btn", "after clear trim toes checkbox");
 		boxscrapieblood = (CheckBox) findViewById(R.id.checkBoxScrapieBlood);
 		boxscrapieblood.setChecked(false);
-//		Log.i("clear btn", "after scrapie blood checkbox");		
+		Log.i("clear btn", "after scrapie blood checkbox");	
+				
+//		Code to handle the 2014 Woolgrowers Raffle from Shearwell	
+		boxraffle = (CheckBox) findViewById(R.id.checkBoxEnterRaffle);
+		boxraffle.setChecked(false);
+		Log.i("clear btn", "after clear raffle checkbox");	
 		
 		boxweight = (CheckBox) findViewById(R.id.checkBoxTakeWeight);
 		boxweight.setChecked(false);
+		
 		TV = (TextView) findViewById( R.id.trait11_data );
 		TV.setText( "" );
 		// Enable Update Database button and make it normal
