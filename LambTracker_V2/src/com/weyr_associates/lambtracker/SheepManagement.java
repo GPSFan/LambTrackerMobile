@@ -645,7 +645,7 @@ public class SheepManagement extends ListActivity {
 			//	Code to handle the 2014 Woolgrowers Raffle from Shearwell			
 			boxraffle = (CheckBox) findViewById(R.id.checkBoxEnterRaffle);
 			if (boxraffle.isChecked()){				
-				cmd = String.format("update sheep_table set alert01 = 'You have already entered the raffle.'" +
+				cmd = String.format("update sheep_table set alert01 = 'This tag has been used as a demonstration.'" +
 						" where sheep_id =%d ", thissheep_id ) ;
 				Log.i("update alerts ", "before cmd " + cmd);
 				dbh.exec( cmd );
